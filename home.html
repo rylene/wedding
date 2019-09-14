@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.full {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width:100%;
+	height:100vh;
+	z-index: 1;
+}
+.content {
+	background: #05f;
+}
+</style>
+</head>
+<body>
+	<div class="full content">page 3</div>
+	<video class="full" style="object-fit: fit; background: #EEE1E4" autobuffer preload src="rylene.mov"></video>
+	<div class="full content"  >page 1</div>
+</body>
+<script>
+let pages = document.body.querySelectorAll(".full")
+let video = document.body.querySelector("video")
+let pageHeight = pages[0].offsetHeight;
+let totalHeight = pageHeight * pages.length;
+let percent = 0;
+document.body.style.minHeight = totalHeight + "px"
+
+function onScroll() {
+	percent = document.documentElement.scrollTop / (totalHeight - pageHeight);
+	window.requestAnimationFrame(onFrame);
+}
+
+function onFrame() {
+	pages[2].style.opacity = modulate(percent, [.1, .2], [1, 0], true)
+	pages[1].style.opacity = modulate(percent, [.7, .8], [1, 0], true)
+	// video.currentTime = modulate(percent, [.2, .8], [0, video.duration], true)
+	video.fastSeek(modulate(percent, [.2, .8], [0, video.duration], true))
+}
+
+function modulate(value, rangeA, rangeB, limit) {
+  let fromHigh, fromLow, result, toHigh, toLow
+  if (limit == null) {
+    limit = false
+  }
+  fromLow = rangeA[0]
+  fromHigh = rangeA[1]
+  toLow = rangeB[0]
+  toHigh = rangeB[1]
+  result = toLow + ((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow)
+  if (limit === true) {
+    if (toLow < toHigh) {
+      if (result < toLow) {
+        return toLow
+      }
+      if (result > toHigh) {
+        return toHigh
+      }
+    } else {
+      if (result > toLow) {
+        return toLow
+      }
+      if (result < toHigh) {
+        return toHigh
+      }
+    }
+  }
+  return result
+}
+
+window.requestAnimationFrame(onFrame);
+window.addEventListener("scroll", onScroll);
+</script>
+</html>
