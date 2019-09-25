@@ -13,22 +13,39 @@
 	z-index: 1;
 }
 .content {
-	background: #05f;
+	background: #e1cbd7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: sans-serif;
+	color: #c81e26;
+	font-size: 40px;
+
+}
+.video {
+	object-fit: contain;
+	background-color: #EEE1E4;
 }
 </style>
 </head>
 <body>
-	<div class="full content">page 3</div>
-	<video class="full" style="object-fit: fit; background: #EEE1E4" autobuffer preload src="rylene.mov"></video>
-	<div class="full content"  >page 1</div>
+	<div class="full content">
+		<div>page 3</div>
+	</div>
+	<img class="full video" src="v/r1-fs8.png"/>
+	<div class="full content"  >
+		<div>page 1</div>
+	</div>
 </body>
 <script>
 let pages = document.body.querySelectorAll(".full")
-let video = document.body.querySelector("video")
+let video = document.body.querySelector(".video")
 let pageHeight = pages[0].offsetHeight;
 let totalHeight = pageHeight * pages.length;
 let percent = 0;
 document.body.style.minHeight = totalHeight + "px"
+pages[2].style.opacity = 0
+pages[1].style.opacity = 1
 
 function onScroll() {
 	percent = document.documentElement.scrollTop / (totalHeight - pageHeight);
@@ -36,10 +53,11 @@ function onScroll() {
 }
 
 function onFrame() {
+	percent = document.documentElement.scrollTop / (totalHeight - pageHeight);
 	pages[2].style.opacity = modulate(percent, [.1, .2], [1, 0], true)
 	pages[1].style.opacity = modulate(percent, [.7, .8], [1, 0], true)
-	// video.currentTime = modulate(percent, [.2, .8], [0, video.duration], true)
-	video.fastSeek(modulate(percent, [.2, .8], [0, video.duration], true))
+	var id = Math.round(modulate(percent, [.2, .8], [1, 60], true));
+	video.src = `v/r${id}-fs8.png`
 }
 
 function modulate(value, rangeA, rangeB, limit) {
@@ -71,6 +89,7 @@ function modulate(value, rangeA, rangeB, limit) {
   }
   return result
 }
+
 
 window.requestAnimationFrame(onFrame);
 window.addEventListener("scroll", onScroll);
