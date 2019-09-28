@@ -2,8 +2,16 @@
 <html>
 <head>
 <title>Title</title>
-<link rel="stylesheet" href="style.css">
 <style>
+@font-face {
+	font-family: "OggRoman";
+	font-weight: 400;
+	src: url("Ogg-Roman.otf");
+}
+body {
+	background: #000;
+
+}
 .full {
 	position: fixed;
 	top: 0;
@@ -13,32 +21,54 @@
 	z-index: 1;
 }
 .content {
-	background: #e1cbd7;
+	font-family: OggRoman;
+	font-size: 40px;
+	background-color: #e1cbd7;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-family: sans-serif;
 	color: #c81e26;
-	font-size: 40px;
-
+	background-position: center;
+	background-repeat: no-repeat;
 }
+
 .video {
 	object-fit: contain;
-	background-color: #EEE1E4;
+	background-color: #ECE0E0;
+}
+
+.psa {
+	background: #000;
+	color: #fff;
+	z-index: 2;
+	font-size: 70px;
+	pointer-events: none;
+	top: -4000px;
+}
+
+@media screen and (orientation:portrait) {
+	.psa { top: 0 }
 }
 </style>
 </head>
 <body>
-	<div class="full content">
-		<div>page 3</div>
+	<div class="full content psa">
+		Please turn your phone
 	</div>
-	<img class="full video" src="v/r1-fs8.png"/>
-	<div class="full content"  >
-		<div>page 1</div>
+
+	<div class="page full content"
+
+	 	style="background-color: #1A376B; background-image: url('savethedate.svg'); background-size: contain">
 	</div>
+	<img class="page full video" src="v/r1-fs8.png"/>
+	<a class="page full content"
+		href="seleneandryangetmarried.ics"
+		style="background-color: #1A376B; background-image: url('yourinvited.svg'); background-size: contain">
+
+	</a>
 </body>
 <script>
-let pages = document.body.querySelectorAll(".full")
+let pages = document.body.querySelectorAll(".page")
 let video = document.body.querySelector(".video")
 let pageHeight = pages[0].offsetHeight;
 let totalHeight = pageHeight * pages.length;
