@@ -1,0 +1,2 @@
+~/Downloads/ffmpeg -i rylene.mov -vf fps=5 v/r%d.png
+~/Downloads/quant v/r*

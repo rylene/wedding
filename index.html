@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Title</title>
+<title>Selene & Ryan Get Married</title>
 <style>
 @font-face {
 	font-family: "OggRoman";
@@ -23,7 +23,6 @@ body {
 .content {
 	font-family: OggRoman;
 	font-size: 40px;
-	background-color: #e1cbd7;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -46,6 +45,24 @@ body {
 	top: -4000px;
 }
 
+.fadein {
+	animation-delay: 200ms;
+	animation-duration: 3s;
+	animation-name: fadein;
+	animation-fill-mode: forwards;
+	opacity: 0;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 @media screen and (orientation:portrait) {
 	.psa { top: 0 }
 }
@@ -56,15 +73,14 @@ body {
 		Please turn your phone
 	</div>
 
-	<div class="page full content"
-
-	 	style="background-color: #1A376B; background-image: url('savethedate.svg'); background-size: contain">
+	<div class="page full content" style="background-color: #1A376B; background-image: url('savethedate.svg'); background-size: contain">
 	</div>
 	<img class="page full video" src="v/r1-fs8.png"/>
 	<a class="page full content"
 		href="seleneandryangetmarried.ics"
-		style="background-color: #1A376B; background-image: url('yourinvited.svg'); background-size: contain">
-
+		style="background-color: #1A376B;">
+		<div class="full content fadein" style="background-image: url('yourinvited.svg'); background-size: contain">
+		</div>
 	</a>
 </body>
 <script>
