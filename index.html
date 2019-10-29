@@ -3,11 +3,6 @@
 <head>
 <title>Selene & Ryan Get Married</title>
 <style>
-@font-face {
-	font-family: "OggRoman";
-	font-weight: 400;
-	src: url("Ogg-Roman.otf");
-}
 body {
 	background: #000;
 
@@ -43,6 +38,10 @@ body {
 	font-size: 70px;
 	pointer-events: none;
 	top: -4000px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('turnPhone.svg');
+	background-size: contain;
 }
 
 .fadein {
@@ -65,12 +64,16 @@ body {
 
 @media screen and (orientation:portrait) {
 	.psa { top: 0 }
+	body {
+		overflow: hidden;
+		height: 0 !important;
+	}
 }
 </style>
 </head>
 <body>
 	<div class="full content psa">
-		Please turn your phone
+
 	</div>
 
 	<div class="page full content" style="background-color: #1A376B; background-image: url('savethedate.svg'); background-size: contain">
@@ -89,7 +92,7 @@ let video = document.body.querySelector(".video")
 let pageHeight = pages[0].offsetHeight;
 let totalHeight = pageHeight * pages.length;
 let percent = 0;
-document.body.style.minHeight = totalHeight + "px"
+document.body.style.height = totalHeight + "px"
 
 function onScroll() {
 	window.requestAnimationFrame(onFrame);
