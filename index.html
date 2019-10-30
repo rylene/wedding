@@ -102,8 +102,8 @@ function onFrame() {
 	percent = window.scrollY / (totalHeight - pageHeight);
 	pages[2].style.opacity = modulate(percent, [.1, .2], [1, 0], true)
 	pages[1].style.opacity = modulate(percent, [.7, .8], [1, 0], true)
-	var id = Math.round(modulate(percent, [.05, .9], [1, 60], true));
-	video.src = `v/r${id}-fs8.png`
+	var id = Math.round(modulate(percent, [.05, .9], [1, 72], true));
+	video.src = `v/r${id}.png`
 }
 
 function modulate(value, rangeA, rangeB, limit) {
