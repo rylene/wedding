@@ -1,0 +1,9 @@
+Tools used to generate png frames
+
+- https://imageoptim.com
+- ffmpeg
+
+
+ffmpeg -i RyanSelene_STD_opt6_v02.mov -vf fps=8 v/r%d.png
+
+Settings used for imageoptim: 70% lossy PNG.
